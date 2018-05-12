@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href='//bizweb.dktcdn.net/100/241/515/themes/573403/assets/styles.scss.css?1502940215307' rel='stylesheet' type='text/css' />
+    <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' rel='stylesheet' type='text/css' />
+
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <img src="~/img/background.jpg" style="width:100%; height: 350px" />
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/store/index" style="font-size:24px">Trang chủ</a>
+            </div>
+            <ul class="nav navbar-nav" style="font-size:18px">
+                @*<li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        My Accounts
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="TranDucThuanb.htm">Login</a></li>
+                        <li><a href="#">Forgot Password</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Logoff</a></li>
+                        <li><a href="#">Change Password</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">My orders</a></li>
+                        <li><a href="#">My favorite items</a></li>
+                    </ul>
+                </li>*@
+                <
+                <li>@Html.Action("GiohangPartial", "Giohang")</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" style="font-size:18px">
+                <li>
+                    <a href="/nguoidung/dangnhap">
+                        <span class="glyphicon glyphicon-user">
+                        </span> @Html.Action("Xinchao", "Nguoidung")
+                    </a>
+                </li>
+                <li>
+                    <a href="/nguoidung/logout">
+                        <span class="glyphicon glyphicon-log-in">
+                        </span> Log out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- header service -->
+    <div class="header-service">
+        <div class="container">
+            <div class="row" style="font-size:12px">
+                <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <div class="content">
+                        <div class="icon-truck">&nbsp;</div>
+                        <span>Miễn phí vận chuyển</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <div class="content">
+                        <div class="icon-support">&nbsp;</div>
+                        <span>Hỗ trợ 24/7</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <div class="content">
+                        <div class="icon-money">&nbsp;</div>
+                        <span>Hoàn tiền trong 15 ngày</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <div class="content">
+                        <div class="icon-dis">&nbsp;</div>
+                        <span>Giảm giá theo đơn hàng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end header service -->
+    <br />
+    <div class="col-md-2">
+
+        @Html.Action("ChuDe", "Store");
+
+        @Html.Action("NhaXuatBan", "Store");
+
+    </div>
+    <div class="col-md-8">
+        @RenderBody()
+    </div>
+    <div class="col-md-2">
+        <img src="~/img/adv3.jpg" width="200px" height="300px" />
+        <img src="~/img/adv1.jpg" width="200px" height="300px" />
+        <img src="~/img/adv2.jpg" width="200px" height="300px" />
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

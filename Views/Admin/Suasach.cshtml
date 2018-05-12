@@ -1,0 +1,104 @@
+﻿@model BookStore.Models.SACH
+
+@{
+    ViewBag.Title = "Suasach";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2>ĐIỀU CHỈNH THÔNG TIN SÁCH</h2>
+
+@using (Html.BeginForm("Suasach", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Masach)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Masach, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                <div style="font:18px; padding:5px 0 0 5px">@ViewBag.Masach</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tensach, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.Tensach, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tensach, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Dongia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.Dongia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Dongia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mota, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                <textarea name="Mota">@ViewBag.Mota</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Hinhminhhoa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                Chọn ảnh mới
+                <input type="file" name="fileUpload" style="width:300px" />
+                <img src="@Url.Content("~/img/"+@Model.Hinhminhhoa)" width="120px" /> (Ảnh hiện tại)
+                @ViewBag.ThongBao
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CHUDE.TenChuDe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaCD")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NHAXUATBAN.TenNXB, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaNXB")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ngaycapnhat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @*@Html.TextBoxFor(m => m.Ngaycapnhat, new { Value = string.Format("{0:dd/MM/yyyy}", Model.Ngaycapnhat) })
+                    <input type="date" name="Ngaycapnhat" class="form-control" value="Model.Ngaycapnhat" style="width:190px" />
+                    @Html.ValidationMessageFor(model => model.Ngaycapnhat)*@
+                @Html.EditorFor(model => model.Ngaycapnhat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ngaycapnhat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Soluongban, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.Soluongban, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Soluongban, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div style="margin-left:20px;font-size:18px">
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,57 @@
+﻿
+@using BookStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SACH>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 style="text-align:center">SÁCH MỚI</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search"/>
+    </p>
+}
+
+
+@foreach (var sach in Model)
+{
+    <div class="col-md-6 col-lg-6">
+        <div class="thumbnail" style="height:225px;text-align:center; ">
+            <a href="@Url.Action("Details", "Store", new { id = sach.Masach })">
+                <img alt="@sach.Tensach" src="../../img/@sach.Hinhminhhoa" style="width:100px;height:100px"/>
+                <div>
+                    <br />
+                    <h4>@sach.Tensach</h4>
+                    <h5>@sach.Dongia</h5>
+                </div>
+            </a>
+            <div class="ratings">
+                <p class="pull-right">@sach.solanxem reviews</p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+}
+<div class="MenuTrang col-md-12" style="margin-left:15px; text-align:center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }));
+</div>
+
+
+
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

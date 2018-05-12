@@ -1,0 +1,37 @@
+﻿@* @model IEnumerable<BookStore.Models.SACH>*@
+
+
+@{
+    ViewBag.Title = "SPTheoNXB";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 style="text-align:center">SÁCH THEO NHÀ XUẤT BẢN</h2>
+@foreach (var sach in Model)
+{
+    <div class="col-md-6 col-lg-6">
+        <div class="thumbnail" style="height:225px">
+            <a href="@Url.Action("Details", "Store", new { id = sach.Masach })">
+                <img alt="@sach.Tensach" src="../../img/@sach.Hinhminhhoa" />
+
+                <div>
+                    <br />
+                    <h4 style="text-align:center">@sach.Tensach</h4>
+                    <h5 style="text-align:center">@sach.Dongia</h5>
+                </div>
+            </a>
+            <div class="ratings">
+                <p class="pull-right">@sach.solanxem reviews</p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+}
+

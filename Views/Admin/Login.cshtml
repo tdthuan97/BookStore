@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8" />
+    <title>
+        HTML Document Structure
+    </title>
+
+    <link href="~/Content/style.css" rel="stylesheet" />
+</head>
+<body>
+     
+        @using (Html.BeginForm())
+        {
+                <h1>ĐĂNG NHẬP HỆ THỐNG</h1>
+                @Html.ValidationSummary(true)
+                <h3>@ViewBag.ThongBao</h3>
+                <div class="inset">
+                <p>
+                    <label for="email">USERNAME</label>
+                    <input type="text" name="username" id="email">
+                    <h4 style="color:red">@ViewData["Loi1"]</h4>
+                </p>
+                <p>
+                    <label for="password">PASSWORD</label>
+                    <input type="password" name="password" id="password">
+                    <h4 style="color:red">@ViewData["Loi2"]</h4>
+                </p>
+                <p>
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Remember me for 14 days</label>
+                </p>
+                </div>
+                <p class="p-container">
+                    <span>Forgot password ?</span>
+                    <input type="submit" name="go" id="go" value="Log in">
+                </p>
+        }
+</body>
+</html>
+

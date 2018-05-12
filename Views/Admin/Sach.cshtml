@@ -1,0 +1,102 @@
+﻿@using BookStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<BookStore.Models.SACH>
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+         @input.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "Sach";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2>QUẢN LÝ THÔNG TIN SÁCH</h2>
+
+<p>
+    @Html.ActionLink("THÊM MỚI", "Themmoisach")
+</p>
+<table class="table-striped" border="1">
+    <tr class="custom_centered" style="font-size:15px;">
+        <th style="width: 200px">
+            Tên sách
+        </th>
+        <th style="width: 120px">
+            Giá bán
+        </th>
+        <th style="width: 300px">
+            Mô tả
+        </th>
+        <th style="width: 150px">
+            Hình ảnh
+        </th>
+        <th style="width: 120px">
+            Tên chủ đề
+        </th>
+        <th style="width: 100px">
+            Tên NXB
+        </th>
+        <th style="width: 160px">
+            Ngày cập nhật
+        </th>
+        <th style="width:100px">
+            Số lượng bán
+        </th>
+       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="font-size:12px;text-align:center">
+            <td>
+                @Html.DisplayFor(modelItem => item.Tensach)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dongia)
+            </td>
+            <td>
+                @Truncate(item.Mota, 100)
+            </td>
+            <td>
+                <img src="@Url.Content("~/img/"+item.Hinhminhhoa)" style="width:80px;height:80px"/>
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.CHUDE.TenChuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NHAXUATBAN.TenNXB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ngaycapnhat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soluongban)
+            </td>
+            
+            <td style="text-align:center">
+                @Html.ActionLink("Sửa", "Suasach", new { id = item.Masach }) <br />
+                @Html.ActionLink("Chi tiết", "Chitietsach", new { id = item.Masach }) <br />
+                @Html.ActionLink("Xóa", "Xoasach", new { id = item.Masach }) <br />
+            </td>
+        </tr>
+    }
+</table>
+<div class="MenuTrang" style="margin-left:15px">
+    @Html.PagedListPager(Model, page => Url.Action("Sach", new { page = page }));
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+    tr.custom_centered th {
+        text-align: center;
+    }
+</style>

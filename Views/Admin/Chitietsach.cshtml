@@ -1,0 +1,91 @@
+﻿@model BookStore.Models.SACH
+
+@{
+    ViewBag.Title = "Chitietsach";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2>THÔNG TIN CHI TIẾT SÁCH</h2>
+
+<div >
+    <hr />
+    <dl class="dl-horizontal size-dt size-dd">
+        <dt>
+            Tên sách:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tensach)
+        </dd>
+
+        <dt>
+            Giá bán:
+        </dt>
+
+        <dd>
+           @String.Format("{0:0,0}",Model.Dongia) VNĐ
+        </dd>
+
+        <dt>
+            Mô tả:
+        </dt>
+
+        <dd style="width:600px;text-align:justify">
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+            Hình ảnh:
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/img/"+Model.Hinhminhhoa)" width="120px"/>
+        </dd>
+
+        <dt>
+            Chủ đề
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CHUDE.TenChuDe)
+        </dd>
+
+        <dt>
+           Nhà xuất bản
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHAXUATBAN.TenNXB)
+        </dd>
+
+        <dt>
+            Ngày cập nhật
+        </dt>
+
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}",Model.Ngaycapnhat)
+        </dd>
+
+        <dt>
+            Số lượng tồn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Soluongban)
+        </dd>
+
+      
+    </dl>
+</div>
+<p style="margin-left:20px;font-size:18px">
+    @Html.ActionLink("ĐIỀU CHỈNH", "Suasach", new { id = Model.Masach }) |
+    @Html.ActionLink("TRỞ VỀ", "Sach")
+</p>
+<style>
+    dl.size-dt dt {
+        font-size:18px;
+    }
+    dl.size-dd dd {
+        font-size: 12px;
+    }
+</style>
